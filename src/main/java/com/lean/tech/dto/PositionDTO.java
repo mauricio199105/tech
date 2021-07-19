@@ -1,0 +1,17 @@
+package com.lean.tech.dto;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+public class PositionDTO {
+	
+	private Long id;
+	private String name;
+
+}
