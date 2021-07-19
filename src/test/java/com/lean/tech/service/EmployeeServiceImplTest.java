@@ -2,10 +2,11 @@ package com.lean.tech.service;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.doThrow;
+import static org.mockito.Mockito.when;
 
 import java.math.BigDecimal;
+import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -69,6 +70,27 @@ public class EmployeeServiceImplTest {
 
 		assertFalse(result);
 
+	}
+	
+	@Test
+	public void updateEmployeeWhenNoExistTest() {
+		
+		PersonInDTO person = PersonInDTO.builder().name("Mauricio").lastName("Ramirez").address("Cra 65")
+				.cellphone("3136588299").cityName("Medellin").build();
+		PositionDTO position = PositionDTO.builder().id(1L).name("DEV").build();
+
+		EmployeeInDTO employeeDTO = EmployeeInDTO.builder().id(2L).person(person).position(position).build();
+		
+		Employee employee = this.buildEmployee();
+		
+		Optional<Employee> emplOpt = Optional.of(employee);
+		
+		when(this.employeeRepository.findById(employee.getId())).thenReturn(emplOpt);
+		
+		boolean result = this.employeeService.updateEmployee(employeeDTO);
+		
+		assertFalse(result);
+		
 	}
 
 	private Employee buildEmployee() {

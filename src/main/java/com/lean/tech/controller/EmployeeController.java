@@ -38,7 +38,7 @@ public class EmployeeController {
 		if (this.employeeService.createEmployee(employee)) {
 			return HttpStatus.OK;
 		} else {
-			return HttpStatus.FORBIDDEN;
+			return HttpStatus.BAD_REQUEST;
 		}
 
 	}
